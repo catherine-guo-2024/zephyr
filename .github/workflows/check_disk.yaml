@@ -1,0 +1,17 @@
+name: Build peripheral
+run-name: Build peripheral
+on:
+  push:
+  pull_request:
+
+jobs:
+  Build-peripheral:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check disk
+        run: |
+          df -h
+          rm -rf /mnt/hostedtoolcache/*
+          rm -rf /mnt/lib/apt/lists/*
+          rm -rf /mnt/local/share/boost/*
