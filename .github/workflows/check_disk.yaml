@@ -5,19 +5,6 @@ on:
   pull_request:
 
 jobs:
-  Check_Disk:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: check disk
-        run: |
-          df -h
-          rm -rf /mnt/hostedtoolcache/*
-          rm -rf /mnt/lib/apt/lists/*
-          rm -rf /mnt/local/share/boost/*
-          echo "=== done cleaning ==="
-          df -h
-
   After_check:
     runs-on: ubuntu-latest
 
