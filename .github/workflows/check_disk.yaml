@@ -17,6 +17,8 @@ jobs:
           sudo du -sh /mnt
           du -sh /opt
           ls -al /mnt
+          ls -al /usr/local
+          ls -al /home/runner
   
   After_check:
     runs-on: ubuntu-latest
