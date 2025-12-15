@@ -21,12 +21,15 @@ jobs:
   After_check:
     runs-on: ubuntu-latest
 
+    strategy:
+      max-parallel: 1
+      matrix:
+        attempt: [1, 2, 3, 4, 5]
+      fail-fast: false
+
     container:
-      image: ghcr.io/zephyrproject-rtos/ci:v0.26.11
+      image: ghcr.io/zephyrproject-rtos/ci-base:latest
       options: '--entrypoint /bin/bash'
-      volumes:
-        - /opt:/mnt/opt
-        - /usr/local/:/mnt/local/
 
     steps:
       - name: check disk
