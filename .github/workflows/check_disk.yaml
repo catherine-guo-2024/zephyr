@@ -15,3 +15,6 @@ jobs:
           rm -rf /mnt/hostedtoolcache/*
           rm -rf /mnt/lib/apt/lists/*
           rm -rf /mnt/local/share/boost/*
+          echo "=== done cleaning ==="
+          df -h
+
