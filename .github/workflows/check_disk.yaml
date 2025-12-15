@@ -14,8 +14,8 @@ jobs:
           df -h
           du -sh /home/runner
           du -sh /usr/local
-          du -sh /mnt
-          du -sh /opt/
+          sudo du -sh /mnt
+          du -sh /opt
           ls -al /mnt
   
   After_check:
