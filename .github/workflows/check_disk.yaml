@@ -18,7 +18,7 @@ jobs:
           echo "=== done cleaning ==="
           df -h
 
-  After check:
+  After_check:
     runs-on: ubuntu-latest
 
     container:
