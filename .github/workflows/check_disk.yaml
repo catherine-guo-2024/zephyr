@@ -5,6 +5,14 @@ on:
   pull_request:
 
 jobs:
+  Before_check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check disk
+        run: |
+          du -sh home/runner/work
+  
   After_check:
     runs-on: ubuntu-latest
 
