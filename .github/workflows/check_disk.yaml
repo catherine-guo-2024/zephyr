@@ -7,26 +7,13 @@ env:
   ZSDK_VERSION: 0.17.0-rc2
 
 jobs:
-  Before_check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: check disk
-        run: |
-          whoami
-          df -h
-          du -sh /home/runner
-          du -sh /usr/local
-          sudo du -sh /mnt
-          du -sh /opt
-  
   After_check:
     runs-on: ubuntu-latest
 
     strategy:
       max-parallel: 1
       matrix:
-        attempt: [1, 2, 3, 4, 5]
+        attempt: [1]
       fail-fast: false
 
     container:
