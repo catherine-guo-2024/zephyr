@@ -3,6 +3,8 @@ run-name: check disk
 on:
   push:
   pull_request:
+env:
+  ZSDK_VERSION: 0.17.0-rc2
 
 jobs:
   Before_check:
@@ -51,6 +53,15 @@ jobs:
           echo "sdk-version -> ${ZSDK_VERSION}"
           echo "event_triger_ref: ${EVENT_TRIGER_REF}"
           echo "${{ github.event.pull_request.head.sha || github.ref }}"
+
+      - name: install sdk
+        shell: bash
+        run: |
+          mkdir -p /opt/toolchains
+          cd /opt/toolchains
+          wget -q --show-progress --progress=bar:force:noscroll https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${ZSDK_VERSION}/zephyr-sdk-${ZSDK_VERSION}_linux-${HOSTTYPE}.tar.xz
+          tar xf zephyr-sdk-${ZSDK_VERSION}_linux-${HOSTTYPE}.tar.xz
+          rm zephyr-sdk-${ZSDK_VERSION}_linux-${HOSTTYPE}.tar.xz
 
       - name: setup sdk
         shell: bash
