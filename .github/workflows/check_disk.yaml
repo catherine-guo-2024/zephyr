@@ -11,8 +11,10 @@ jobs:
     steps:
       - name: check disk
         run: |
+          df -h
           du -sh /home/runner
           du -sh /usr/local
+          du -sh /mnt/local/
           du -sh /opt/
   
   After_check:
@@ -21,6 +23,10 @@ jobs:
     container:
       image: ghcr.io/zephyrproject-rtos/ci:v0.26.11
       options: '--entrypoint /bin/bash'
+      volumes:
+        - /opt/hostedtoolcache:/mnt/hostedtoolcache
+        - /var/lib/apt/lists:/mnt/lib/apt/lists
+        - /usr/local/:/mnt/local/
 
     steps:
       - name: check disk
