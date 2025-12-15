@@ -16,9 +16,28 @@ jobs:
           du -sh /usr/local
           sudo du -sh /mnt
           du -sh /opt
+
+          echo "mnt"
           ls -al /mnt
+          cd /mnt
+          mkdir test
+          echo "after make"
+          ls -al /mnt
+
+          echo "local"
           ls -al /usr/local
+          cd /usr/local
+          mkdir test_local
+          echo "after make"
+          ls -al /usr/local
+
+          echo "runner"
           ls -al /home/runner
+          cd /home/runner
+          mkdir test_work
+          echo "after make"
+          ls -al /home/runner
+
   
   After_check:
     runs-on: ubuntu-latest
