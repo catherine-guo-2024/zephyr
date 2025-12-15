@@ -12,7 +12,8 @@ jobs:
       - name: check disk
         run: |
           du -sh /home/runner
-          du -sh /mnt/local
+          du -sh /usr/local
+          du -sh /opt/
   
   After_check:
     runs-on: ubuntu-latest
