@@ -5,6 +5,7 @@ on:
   pull_request:
 env:
   ZSDK_VERSION: 0.17.0-rc2
+  FVP_BASE_REVC_VERSION: 11.24_11
 
 jobs:
   After_check:
@@ -46,10 +47,8 @@ jobs:
         run: |
           mkdir -p /opt/toolchains
           cd /opt/toolchains
-          wget -q --show-progress --progress=bar:force:noscroll https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${ZSDK_VERSION}/zephyr-sdk-${ZSDK_VERSION}_linux-${HOSTTYPE}.tar.xz
-          tar xf zephyr-sdk-${ZSDK_VERSION}_linux-${HOSTTYPE}.tar.xz
-          rm zephyr-sdk-${ZSDK_VERSION}_linux-${HOSTTYPE}.tar.xz
-
+          wget -q --show-progress --progress=bar:force:noscroll -O- https://developer.arm.com/-/media/Files/downloads/ecosystem-models/FVP_Base_RevC-2xAEMvA_${FVP_BASE_REVC_VERSION}_Linux64.tgz
+  
       - name: setup sdk
         shell: bash
         run: |
