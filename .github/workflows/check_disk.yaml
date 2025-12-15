@@ -12,6 +12,7 @@ jobs:
       - name: check disk
         run: |
           du -sh /home/runner
+          du -sh /mnt/local
   
   After_check:
     runs-on: ubuntu-latest
