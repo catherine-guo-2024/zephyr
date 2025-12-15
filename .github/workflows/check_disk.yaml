@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: check disk
         run: |
-          du -sh home/runner/work
+          du -sh home/runner
   
   After_check:
     runs-on: ubuntu-latest
