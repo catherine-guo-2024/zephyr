@@ -14,8 +14,9 @@ jobs:
           df -h
           du -sh /home/runner
           du -sh /usr/local
-          du -sh /mnt/local/
+          du -sh /mnt
           du -sh /opt/
+          ls -al /mnt
   
   After_check:
     runs-on: ubuntu-latest
@@ -26,7 +27,7 @@ jobs:
       volumes:
         - /opt/hostedtoolcache:/mnt/hostedtoolcache
         - /var/lib/apt/lists:/mnt/lib/apt/lists
-        - /usr/local/:/mnt/local/
+        - /usr/local/:/usr/local
 
     steps:
       - name: check disk
