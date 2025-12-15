@@ -11,19 +11,12 @@ jobs:
     steps:
       - name: check disk
         run: |
+          whoami
           df -h
           du -sh /home/runner
           du -sh /usr/local
           sudo du -sh /mnt
           du -sh /opt
-
-
-          echo "local"
-          ls -al /usr/local
-          cd /usr/local
-          mkdir test_local
-          echo "after make"
-          ls -al /usr/local
 
           echo "runner"
           ls -al /home/runner
@@ -38,6 +31,13 @@ jobs:
           mkdir test_opt
           echo "after make"
           ls -al /opt
+
+          echo "local"
+          ls -al /usr/local
+          cd /usr/local
+          mkdir test_local
+          echo "after make"
+          ls -al /usr/local
   
   
   After_check:
