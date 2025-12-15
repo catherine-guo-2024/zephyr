@@ -17,28 +17,6 @@ jobs:
           du -sh /usr/local
           sudo du -sh /mnt
           du -sh /opt
-
-          echo "runner"
-          ls -al /home/runner
-          cd /home/runner
-          mkdir test_work
-          echo "after make"
-          ls -al /home/runner
-
-          echo "opt"
-          ls -al /opt
-          cd /opt
-          mkdir test_opt
-          echo "after make"
-          ls -al /opt
-
-          echo "local"
-          ls -al /usr/local
-          cd /usr/local
-          mkdir test_local
-          echo "after make"
-          ls -al /usr/local
-  
   
   After_check:
     runs-on: ubuntu-latest
@@ -47,9 +25,8 @@ jobs:
       image: ghcr.io/zephyrproject-rtos/ci:v0.26.11
       options: '--entrypoint /bin/bash'
       volumes:
-        - /opt/hostedtoolcache:/mnt/hostedtoolcache
-        - /var/lib/apt/lists:/mnt/lib/apt/lists
-        - /usr/local/:/usr/local
+        - /opt:/mnt/opt
+        - /usr/local/:/mnt/local/
 
     steps:
       - name: check disk
