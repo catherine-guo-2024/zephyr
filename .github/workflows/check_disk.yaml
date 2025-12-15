@@ -32,6 +32,13 @@ jobs:
           echo "after make"
           ls -al /home/runner
 
+          echo "opt"
+          ls -al /opt
+          cd /opt
+          mkdir test_opt
+          echo "after make"
+          ls -al /opt
+  
   
   After_check:
     runs-on: ubuntu-latest
