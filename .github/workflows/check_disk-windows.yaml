@@ -1,0 +1,33 @@
+name: windows disk
+run-name: windows disk
+on:
+  push:
+  pull_request:
+env:
+  ZSDK_VERSION: 0.17.0-rc2
+  FVP_BASE_REVC_VERSION: 11.24_11
+
+jobs:
+  windows_check:
+    runs-on: windows-2025
+
+    strategy:
+      max-parallel: 1
+      matrix:
+        attempt: [1]
+      fail-fast: false
+
+    container:
+      image: ghcr.io/zephyrproject-rtos/ci-base:latest
+      options: '--entrypoint /bin/bash'
+
+    steps:
+      - name: PowerShell - print
+        run: Get-Location
+      - name: check size
+        shell: pwsh
+        run: |
+          Get-PSDrive -PSProvider 'FileSystem' | Select-Object Name, 
+            @{Name="總容量(GB)";Expression={ "{0:N2}" -f ($_.Used + $_.Free)/1GB }}, 
+            @{Name="已使用(GB)";Expression={ "{0:N2}" -f ($_.Used/1GB) }},
+            @{Name="可用(GB)"; Expression={ "{0:N2}" -f ($_.Free/1GB) }}
