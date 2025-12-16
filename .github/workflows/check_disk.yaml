@@ -50,6 +50,12 @@ jobs:
           wget -q --show-progress -O- https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${ZSDK_VERSION}/zephyr-sdk-${ZSDK_VERSION}_linux-${HOSTTYPE}.tar.xz
           echo "done"
 
+      - name: unzip sdk
+        shell: bash
+        run: |
+          ls -al
+          tar xf zephyr-sdk-${ZSDK_VERSION}_linux-${HOSTTYPE}.tar.xz
+
       - name: check disk gain
         run: |
           df -h
