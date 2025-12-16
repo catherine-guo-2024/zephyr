@@ -17,10 +17,6 @@ jobs:
         attempt: [1]
       fail-fast: false
 
-    container:
-      image: ghcr.io/zephyrproject-rtos/ci-base:latest
-      options: '--entrypoint /bin/bash'
-
     steps:
       - name: PowerShell - print
         run: Get-Location
