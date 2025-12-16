@@ -56,6 +56,8 @@ jobs:
         run: |
           cd /opt/toolchains
           ls -al
+          tar xf zephyr-sdk-0.17.1-rc2_linux-x86_64_minimal.tar.xz
+          ls -al
 
       - name: check disk gain
         run: |
@@ -83,7 +85,7 @@ jobs:
         run: |
             echo "zephyr sdk -> zephyr-sdk-0.17.1-rc2_linux-x86_64_minimal.tar.xz"
             ls /opt/toolchains/zephyr-sdk-0.17.1-rc2_linux-x86_64_minimal.tar.xz
-            /opt/toolchains/zephyr-sdk-0.17.1-rc2_linux-x86_64_minimal.tar.xz/setup.sh -c
+            /opt/toolchains/zephyr-sdk-0.17.1-rc2_linux-x86_64_minimal/setup.sh -c
 
       - name: checkout manifest
         uses: actions/checkout@v4
