@@ -55,7 +55,6 @@ jobs:
         run: |
           cd /opt/toolchains
           ls -al
-          tar xf zephyr-sdk-${ZSDK_VERSION}_linux-${HOSTTYPE}.tar.xz
 
       - name: check disk gain
         run: |
