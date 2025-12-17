@@ -27,5 +27,6 @@ jobs:
           df -h
           echo "GITHUB_WORKSPACE==${GITHUB_WORKSPACE}"
           ls -al $GITHUB_WORKSPACE
+          du -h --max-depth=1 / 2>/dev/null
 
   
