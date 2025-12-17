@@ -42,7 +42,7 @@ jobs:
 
           cd  /tmp
           pwd
-          du -h --max-depth=1 -- */ | sort -hr
+          ls -al
 
           cd /opt
           pwd
