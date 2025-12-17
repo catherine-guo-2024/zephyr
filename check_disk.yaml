@@ -1,29 +1,68 @@
-name: Build peripheral
-run-name: Build peripheral
+name: check disk
+run-name: check disk
 on:
   push:
   pull_request:
-  schedule:
-    - cron: "0 0 * * *"
+env:
+  ZSDK_VERSION: 0.17.0-rc2
+  FVP_BASE_REVC_VERSION: 11.24_11
+
 jobs:
-  Build-peripheral:
+  After_check:
     runs-on: ubuntu-latest
 
+    strategy:
+      max-parallel: 1
+      matrix:
+        attempt: [1]
+      fail-fast: false
+
     container:
-      image: ghcr.io/zephyrproject-rtos/ci:v0.26.11
+      image: ghcr.io/zephyrproject-rtos/ci-base:latest
       options: '--entrypoint /bin/bash'
 
-
     steps:
-      - name: Clean Out Deletable Files
+      - name: check disk
         run: |
           df -h
-          cd /opt
-          ls -al 
+          echo "GITHUB_WORKSPACE==${GITHUB_WORKSPACE}"
+      - name: set_env
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" -o "${{ github.event_name }}" = "pull_request_target" ];then
+            echo "This is pull request"
+            echo "EVENT_TRIGER_REF=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
+          fi
+          if [ "${{ github.event_name }}" = "push" ];then
+            echo "This is push"
+            echo "EVENT_TRIGER_REF=${{ github.ref }}" >> $GITHUB_ENV
+          fi
+
+      - name: print_env
+        run: |
+          echo "sdk-version -> ${ZSDK_VERSION}"
+          echo "event_triger_ref: ${EVENT_TRIGER_REF}"
+          echo "${{ github.event.pull_request.head.sha || github.ref }}"
+
+      - name: install sdk
+        shell: bash
+        run: |
+          mkdir -p /opt/toolchains
+          cd /opt/toolchains
+          wget -q --show-progress https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.1-rc2/zephyr-sdk-0.17.1-rc2_linux-x86_64.tar.xz
+          echo "done"
+
+      - name: unzip sdk
+        shell: bash
+        run: |
           cd /opt/toolchains
           ls -al
-  
+          tar xf zephyr-sdk-0.17.1-rc2_linux-x86_64.tar.xz
+          ls -al
 
+      - name: check disk gain
+        run: |
+          df -h
+      
       - name: set_env
         run: |
           if [ "${{ github.event_name }}" = "pull_request" -o "${{ github.event_name }}" = "pull_request_target" ];then
@@ -44,9 +83,7 @@ jobs:
       - name: setup sdk
         shell: bash
         run: |
-            echo "zephyr sdk -> zephyr-sdk-${ZSDK_VERSION}"
-            ls /opt/toolchains/zephyr-sdk-${ZSDK_VERSION}
-            /opt/toolchains/zephyr-sdk-${ZSDK_VERSION}/setup.sh -c
+            /opt/toolchains/zephyr-sdk-0.17.1-rc2/setup.sh -c
 
       - name: checkout manifest
         uses: actions/checkout@v4
