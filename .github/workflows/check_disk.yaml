@@ -25,6 +25,8 @@ jobs:
       - name: check disk
         run: |
           df -h
+          echo "show root"
+          ls -al /
           echo "GITHUB_WORKSPACE==${GITHUB_WORKSPACE}"
           ls -al $GITHUB_WORKSPACE
           cd $GITHUB_WORKSPACE
