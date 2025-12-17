@@ -27,6 +27,8 @@ jobs:
           df -h
           echo "show root"
           ls -al /
+          du -sh /.* /* 2>/dev/null | sort -hr
+          echo ""
           echo "GITHUB_WORKSPACE==${GITHUB_WORKSPACE}"
           ls -al $GITHUB_WORKSPACE
           cd $GITHUB_WORKSPACE
