@@ -27,6 +27,8 @@ jobs:
           df -h
           echo "GITHUB_WORKSPACE==${GITHUB_WORKSPACE}"
           ls -al $GITHUB_WORKSPACE
-          du -h --max-depth=1 / 2>/dev/null
+          cd $GITHUB_WORKSPACE
+          cd ../..
+          du -h --max-depth=1 -- */ | sort -hr
 
   
