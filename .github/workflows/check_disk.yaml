@@ -29,6 +29,11 @@ jobs:
           ls -al $GITHUB_WORKSPACE
           cd $GITHUB_WORKSPACE
           cd ../..
+          pwd
+          du -h --max-depth=1 -- */ | sort -hr
+
+          cd  /__t
+          pwd
           du -h --max-depth=1 -- */ | sort -hr
 
   
