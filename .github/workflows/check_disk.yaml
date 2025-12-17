@@ -14,7 +14,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        attempt: [1]
+        attempt: [1,2,3,4,5]
       fail-fast: false
 
     container:
