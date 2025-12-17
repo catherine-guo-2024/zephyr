@@ -40,4 +40,10 @@ jobs:
           pwd
           du -h --max-depth=1 -- */ | sort -hr
 
-  
+          cd  /tmp
+          pwd
+          du -h --max-depth=1 -- */ | sort -hr
+
+          cd /opt
+          pwd
+          du -h --max-depth=1 -- */ | sort -hr
